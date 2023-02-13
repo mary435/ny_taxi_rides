@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging
+    database: ny-taxi-zoom
+    schema: trips
+
+    tables:
+    - name: green_tripdata
+    - name: yellow_tripdata
