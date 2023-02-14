@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-select 
+select
     locationid, 
     borough, 
     zone, 
