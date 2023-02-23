@@ -193,3 +193,33 @@ models:
             description: Total amount of all tolls paid in trip.
           - name: Total_amount 
             description: The total amount charged to passengers. Does not include cash tips.
+
+    - name: stg_fhv_tripdata
+      description: > 
+        Trips made by New York City's For-Hire Vehicle (“FHV”).
+        For-Hire Vehicles provide pre-arranged service anywhere in New York City and are 
+        dispatched by TLC-licensed FHV bases. For-Hire Vehicles must be affiliated with 
+        a single FHV base, but may accept dispatches from any base. 
+        Currently, the TLC will only accept a new FHV application if the vehicle is 
+        wheelchair accessible, or if the driver has a lease-to-own contract. 
+      columns:
+          - name: dispatching_base_num
+            description: The TLC Base License Number of the base that dispatched the trip
+          - name: pickup_locationid
+            description: Taxi Zone in which the trip began.
+            tests:
+              - relationships:
+                  to: ref('taxi_zone_lookup')
+                  field: locationid
+                  severity: warn
+          - name: dropoff_locationid 
+            description: Taxi Zone in which the trip ended.
+          - name: pickup_datetime 
+            description: The date and time when the meter was engaged.
+          - name: dropoff_datetime 
+            description: The date and time when the meter was disengaged.
+          - name: SR_Flag
+            description: Indicates if the trip was a part of a shared ride chain. For shared trips, the value is 1. For non-shared rides, this field is null.
+          - name: Affiliated_base_number
+            desciption: The TLC Base License Number of the base that dispatched the trip
+          
